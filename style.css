@@ -243,6 +243,7 @@ dd{
     background-color: var(--mainC);
     color: #fff;
     border: none;
+    cursor : pointer;
 }
 
 /* 一覧表のデザイン */

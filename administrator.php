@@ -27,6 +27,8 @@ try{
     }
     // elseif(isset($input["mode"]) && $input["mode"] === "edit"){
     //     edit();
+    // }elseif(isset($input["mode"]) && $input["mode"] === "search"){
+    //     search();
     // }
 }catch (PDOException $e){
     echo " エラー内容：" . $e->getMessage();
@@ -117,7 +119,6 @@ tmp;
 
 
 // 検索機能
-
 function search(){
     global $dbh;
     global $input;  
@@ -177,6 +178,7 @@ function update(){
     global $dbh;
     global $input;        
     
+    
 }
 
 
@@ -216,7 +218,7 @@ sql;
 
     <section>
         <form action="administrator.php" method="post">
-            <p class="search_banner"><input type="text" class="search_banner_txt" name="search" placeholder = "キーワードを入力して検索"><input type="submit" class="search_btn" value="&#10004;"></p>
+            <p class="search_banner"><input type="text" class="search_banner_txt" name="search" placeholder = "キーワードを入力して検索"><input type="submit" class="search_btn" value="&#10004;"><input type="hidden" name="mode" value="search"></p>
         </form>
     </section>
  
