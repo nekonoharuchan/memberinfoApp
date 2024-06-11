@@ -1,0 +1,330 @@
+/* ------------------------全体・共通設定 */
+*{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    --mainC:rgb(255, 156, 8);
+    --aceC:#022544;
+}
+body{
+    padding: 20px 5% 0;
+    background-size: cover;
+    background:linear-gradient(rgb(253, 255, 128),rgb(255, 211, 128));
+    min-height: 100vh;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+h2{
+    font-size: 2.5rem;
+    text-align: center;
+    color: var(--aceC);
+    margin-bottom: 60px;
+}
+h3{
+    font-weight: bold;
+    color: var(--aceC);
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* ボタンデザイン */
+button{
+    background-color: inherit;
+    color: inherit;
+    cursor : pointer;
+}
+.btn{
+    display: block;
+    margin: 4rem auto 2rem;
+	padding: 10px 40px;
+	font-weight: bold;
+    border: var(--aceC) solid 2px;
+    color: #fff;
+    background: var(--aceC);
+	transition: 0.3s;
+    font-size: 1.3rem;
+    cursor : pointer;
+}
+.btn:hover{
+    background-color: var(--mainC);
+    border: 2px solid var(--mainC);
+}
+.return_btn{
+    border: var(--aceC) solid 2px;
+    color: var(--aceC);
+    background-color: #fff;
+    width: fit-content;
+}
+.return_btn:hover{
+    border: var(--mainC) solid 2px;
+    color: var(--mainC);
+    background-color: #fff;
+}
+
+/* データ送信状況に関するテキスト */
+.disc_txt{
+    text-align: center;
+    font-size: 1.4rem;
+    line-height: 2;
+}
+
+/* ------------------------header */
+header{
+    margin:0 auto 40px;
+}
+
+.logo{
+    font-family: "Rowdies", sans-serif;
+    font-size: 3.5rem;
+    text-align: center;
+    color: var(--mainC);
+    text-shadow: 0 0 5px var(--aceC);
+    -webkit-text-stroke: #fff 1px;
+}
+
+/* ------------------------メインセクション設定 */
+main{
+}
+
+/* ------------------------フッター */
+footer{
+    margin-top: 20px;
+    text-align: center;
+    padding: 5px;
+    color: var(--aceC);
+}
+
+/* ------------------------ログインフォーム */
+.login_form{
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    margin: 0 auto;
+    color: var(--aceC);
+    font-weight: bold;
+}
+.login_form p{
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+.logintext{
+    height: 2rem;
+    font-size: 1.5rem;
+    width: 90%;
+    padding: 0 .5rem;
+}
+
+/* ------------------------エラー画面 */
+
+
+/* ------------------------ユーザー登録フォーム */
+.input_form{
+    background-color: #fff;
+    padding: 60px 40px;
+}
+.input_txt{
+    margin-bottom: 1.2rem;
+    border-radius: 10px;
+    border: solid 2px var(--mainC);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.input_txt_ttl{
+    display: inline-block;
+    text-align: left;
+    border-radius: 7px 0 0 7px;
+    background-color: var(--mainC);
+    color: var(--aceC);
+    border: solid 2px var(--mainC);
+    padding: 5px 10px;
+    font-weight: bold;
+    width: 32%;
+}
+.intext{
+    max-width: 50%;
+    height: 1.2rem;
+    border: #000 solid 1px;
+    display: inline-block;
+    margin-left: 1rem;
+    padding: 2px;
+    margin-right: 10px;
+    width: 65%;
+    border-color: var(--mainC);
+    background-color: rgba(255, 156, 8,.1);
+}
+.radios{
+    width: 48%;
+    margin-right: 10px;
+}
+.comment_ttl{
+    background-color: var(--mainC);
+    color: var(--aceC);
+    border-radius: 10px;
+    font-weight: bold;
+    width: fit-content;
+    padding: 5px 10px;
+    margin-bottom: .5rem;
+}
+textarea{
+    width: 100%;
+    max-width: 400px;
+    height: 4rem;
+    border: 2px solid var(--mainC);
+    resize: none;
+    overflow-y: scroll;
+}
+
+/* ------------------------確認画面 */
+.check_list{
+margin: 0 40px;
+background-color: #fff;
+padding: 10px;
+color: var(--aceC);
+font-weight: bold;
+}
+.check_txt{
+    display: flex;
+    align-items: center;
+    margin-bottom: .9rem;
+    padding: 5px 0;
+    border-bottom: var(--aceC) solid 2px;
+}
+dt,dd{
+    margin: 0 10px;
+}
+dt{
+    width: 45%;
+}
+dd{
+    width: 55%;
+}
+
+.check_btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.check_btns .btn{
+    margin: 30px;
+}
+/* ------------------------完了画面 */
+
+/* ※現時点で特になし */
+
+/* ------------------------管理者画面 */
+/* 検索バー */
+.search_banner{
+    border-radius: 20px;
+    border: solid 2px var(--mainC);
+    background-color: #fff;
+    width: 450px;
+    margin: 0 auto 60px;
+    display: flex;
+    align-items: center;
+}
+.search_banner_txt{
+    height: 1.2rem;
+    border: none;
+    background-color: #fff;
+    margin-left: 1rem;
+    width: 90%;
+    outline: none;
+}
+.search_btn{
+    border-radius:0 20px 20px 0;
+    margin-left: 1rem;
+    width: 4rem;
+    height: 2rem;
+    font-size: 1.3rem;
+    background-color: var(--mainC);
+    color: #fff;
+    border: none;
+}
+
+/* 一覧表のデザイン */
+.table_box{
+    overflow: scroll;
+    border: 4px var(--mainC) solid;
+    scrollbar-color: var(--aceC) rgb(255, 198, 113);
+}
+table{
+    width: 100%;
+    max-height: 700px;
+    display: block;
+    white-space: nowrap;
+    border-collapse: collapse;
+    color: var(--aceC);
+    font-size: 1.1rem;
+}
+th,td{
+    padding: 10px 15px;
+    text-align: center;
+}
+th{
+    background-color: var(--mainC);
+    position: sticky;
+    top:0;
+    left: 0;
+    z-index: 1;
+}
+td{
+    border: 1px var(--mainC) solid;
+}
+
+/* 編集・削除ボタン */
+.edit_btn,.delete_btn{
+    margin: 0;
+    font-size: 1.1rem;
+    padding: 5px 35px;
+}
+.edit_btn{
+    background-color: rgb(0, 131, 70);
+    border: 2px solid rgb(0, 131, 70);
+}
+.edit_btn:hover{
+    background-color: #fff;
+    color: rgb(0, 131, 70);
+    border: 2px solid rgb(0, 131, 70);
+}
+.delete_btn{
+    background-color: rgb(182, 28, 28);
+    border: 2px solid rgb(182, 28, 28);
+}
+.delete_btn:hover{
+    background-color: #fff;
+    color: rgb(182, 28, 28);
+    border: 2px solid rgb(182, 28, 28);
+}
+
+
+/* 960px以上に適用されるCSS（PC用） */
+@media screen and (min-width: 960px) {
+    .logo{
+        width: 1000px;
+        padding:0 10%;
+        text-align: left;
+    }
+    section{
+        width: 1000px;
+        margin: 0 auto;
+    }
+    
+    .radio{
+        margin-right: 5%;
+    }
+
+    .check_list{
+        padding: 10px 60px;
+    }
+    dt{
+        width: 20%;
+    }
+    dd{
+        width: 70%;
+    }
+
+}

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Sin shine&nbsp;社員情報管理アプリ</title>
+<link rel="stylesheet" href="style.css"></link>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+<meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
+</head>
+
+<body>
+<header><div class="logo">Sin shine</div></header>
+
+<main>
+
+   <section>
+        <h2>情報入力フォーム</h2>
+
+        <form class="input_form" action="check.php" method="post">
+            <p class="input_txt"><span class="input_txt_ttl">社員ID</span><input class="intext" type="text" name="id" required></p>
+            <p class="input_txt"><span class="input_txt_ttl">名前（姓）</span><input class="intext" type="text" name="name_s" required></p>
+            <p class="input_txt"><span class="input_txt_ttl">名前（名）</span><input class="intext" type="text" name="name_m" required></p>
+            <p class="input_txt"><span class="input_txt_ttl">フリガナ（姓）</span><input class="intext" type="text" name="name_s_kn" required></p>
+            <p class="input_txt"><span class="input_txt_ttl">フリガナ（名）</span><input class="intext" type="text" name="name_m_kn" required></p>
+            <p class="input_txt"><span class="input_txt_ttl">メールアドレス</span><input class="intext" type="email" name="email" required></p>
+            <p class="input_txt"><span class="input_txt_ttl">役職</span><input class="intext" type="text" name="position"></p>
+            <p class="input_txt"><span class="input_txt_ttl">住所</span><input class="intext" type="text" name="address" required></p>
+            <p class="input_txt"><span class="input_txt_ttl">電話番号</span><input class="intext" type="tel" name="tel" placeholder="0000000000" required></p>
+            <p class="input_txt"><span class="input_txt_ttl">生年月日</span><input class="intext" type="date" name="birthday" required></p>
+            <p class="input_txt"><span class="input_txt_ttl">性別</span>
+                <span class="radios">
+                    <label class="radio"><input type="radio" name="gender" value="男性" required>男性</label>
+                    <label class="radio"><input type="radio" name="gender" value="女性">女性</label>
+                    <label class="radio"><input type="radio" name="gender" value="その他">その他</label>
+                </span>
+            </p>
+            <p class="input_txt"><span class="input_txt_ttl">入社日</span><input class="intext" type="date" name="join" required></p>
+            <p class="input_txt"><span class="input_txt_ttl">所属（部署）</span><input class="intext" type="text" name="department" required></p>
+            <p class="comment_ttl">備考・特記事項</p>
+            <textarea name="comment"></textarea>
+
+            <p><input class="btn submit_btn" type="submit"></p>
+        </form>
+
+   </section>
+
+</main>
+
+
+<footer><small>&copy;2024&nbsp;Mori&nbsp;Haruki&nbsp;All&nbsp;right&nbsp;reserved</small></footer>
+</body>
+</html>
