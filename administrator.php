@@ -67,7 +67,7 @@ function display(){
             <form action="administrator.php" method="post">
                 <td><input class="btn delete_btn" type="submit" value="削除"></td>
                 <input type = "hidden" name = "id" value = "!id!">
-                <input type = "hidden" name = "mode" value = "delete">                
+                <input type = "hidden" name = "mode" value = "delete">
             </form>
         </tr>
 tmp;
@@ -78,45 +78,98 @@ tmp;
 // 検索機能
 function search(){
     global $dbh;
-    global $input;  
+    global $input;
 
     $sql = <<<sql
-    select * from member where like '%?%';
+    select * from member where flag = 1 and (
+        name_s like ? or
+        member_id like ? or
+        name_s like ? or
+        name_m like ? or
+        name_s_kn like ? or
+        name_m_kn like ? or
+        email like ? or
+        position like ? or
+        address like ? or
+        tel like ? or
+        birthday like ? or
+        gender like ? or
+        joincom like ? or
+        department like ? or
+        comment like ?);
     sql;
+    
     $stmt = $dbh -> prepare($sql);
+    $input["search"] = "%".$input["search"]."%";
+    for($i = 1; $i < 16; $i++){
+        $stmt -> bindParam($i,$input["search"]);
+    }
     $stmt -> execute();
 
-    $tmp = <<<tmp
-        <h3>検索結果</h3>
-        <div class="table_box">
-            <table>
-                <tr>
-                    <th>社員ID</th>
-                    <th>名前(姓)</th>
-                    <th>名前(名)</th>
-                    <th>フリガナ(姓)</th>
-                    <th>フリガナ(名)</th>
-                    <th>メールアドレス</th>
-                    <th>役職</th>
-                    <th>住所</th>
-                    <th>電話番号</th>
-                    <th>生年月日</th>
-                    <th>性別</th>
-                    <th>入社日</th>
-                    <th>所属(部署)</th>
-                    <th>備考・特記事項</th>
-                    <th>編集</th>
-                    <th>削除</th>
-                </tr>
+    // foreach($stmt->fetchAll(PDO::FETCH_ASSOC) as $key=>$value){
+    //     echo $value["member_id"];
+    // }
 
-            </table>
-        </div>
+    $search_format = <<<format
+    <h3>検索結果</h3>
+    <div class="table_box">
+        <table>
+            <tr>
+                <th>社員ID</th>
+                <th>名前(姓)</th>
+                <th>名前(名)</th>
+                <th>フリガナ(姓)</th>
+                <th>フリガナ(名)</th>
+                <th>メールアドレス</th>
+                <th>役職</th>
+                <th>住所</th>
+                <th>電話番号</th>
+                <th>生年月日</th>
+                <th>性別</th>
+                <th>入社日</th>
+                <th>所属(部署)</th>
+                <th>備考・特記事項</th>
+                <th>編集</th>
+                <th>削除</th>
+            </tr>
+format;
+
+    $tmp = <<<tmp
+        <tr>
+            <td>!社員ID!</td>
+            <td>!名前姓!</td>
+            <td>!名前名!</td>
+            <td>!フリガナ姓!</td>
+            <td>!フリガナ名!</td>
+            <td>!メールアドレス!</td>
+            <td>!役職!</td>
+            <td>!住所!</td>
+            <td>!電話番号!</td>
+            <td>!生年月日!</td>
+            <td>!性別!</td>
+            <td>!入社日!</td>
+            <td>!所属部署!</td>
+            <td>!備考特記事項!</td>
+            <form action="administrator.php" method="post">
+                <td><input class="btn edit_btn" type="submit" value="編集"></td>
+                <input type = "hidden" name = "id" value = "!id!">
+                <input type = "hidden" name = "mode" value = "edit">
+            </form>
+            <form action="administrator.php" method="post">
+                <td><input class="btn delete_btn" type="submit" value="削除"></td>
+                <input type = "hidden" name = "id" value = "!id!">
+                <input type = "hidden" name = "mode" value = "delete">
+            </form>
+        </tr>
     tmp;
 
-    $input["search"];
-
-
-
+        $result = tmpl($stmt, $tmp);
+        
+        if($result === ""){
+            echo "<section><h3>検索結果</h3><p class = 'search_result_txt'>検索がヒットしませんでした</p></section>";   
+        }else{
+            echo "<section>" . $search_format . $result . "</table></div></section>";
+        }
 }
 
 //編集機能(編集画面の生成)
@@ -174,7 +227,7 @@ tmp;
 function update(){
     global $dbh;
     global $input;        
-    
+
     $sql = <<<sql
     update member set 
         member_id = ?,
@@ -229,7 +282,7 @@ sql;
 
 // テンプレート置き換え関数
 function tmpl($stmt, $tmp){
-    
+
     $block = "";
 
     while($row = $stmt -> fetch()){
@@ -280,7 +333,7 @@ function tmpl($stmt, $tmp){
 
     <section>
         <form action="administrator.php" method="post">
-            <p class="search_banner"><input type="text" class="search_banner_txt" name="search" placeholder = "キーワードを入力して検索"><input type="submit" class="search_btn" value="&#10004;"><input type="hidden" name="mode" value="search"></p>
+            <p class="search_banner"><input type="text" class="search_banner_txt" name="search" placeholder = "キーワードを入力して検索" required><input type="submit" class="search_btn" value="&#10004;"><input type="hidden" name="mode" value="search"></p>
         </form>
     </section>
 
@@ -288,15 +341,15 @@ function tmpl($stmt, $tmp){
         if(isset($input["mode"]) && $input["mode"] === "edit"){
             edit();
         }
-        // elseif(isset($input["mode"]) && $input["mode"] === "search"){
-        //     search();
-        // }
+        elseif(isset($input["mode"]) && $input["mode"] === "search"){
+            search();
+        }
     ?>
  
     <section>
 
         <h3>社員一覧</h3>
-        
+
         <div class="table_box">
             <table>
                 <tr>
