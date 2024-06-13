@@ -20,6 +20,13 @@ foreach($origin as $key => $value){
     $input[$key] = $value;
 }
 
+//一覧表の並び順の設定
+if($input["sort"] === "desc"){
+    $sort = "desc";
+}else{
+    $sort = "asc";
+}
+
 try{
     $dbh = new PDO($dsn, $user, $pass);
     if(isset($input["mode"]) && $input["mode"] === "delete"){
@@ -63,11 +70,13 @@ function display(){
                 <td><input class="btn edit_btn" type="submit" value="編集"></td>
                 <input type = "hidden" name = "id" value = "!id!">
                 <input type = "hidden" name = "mode" value = "edit">
+                <input type="hidden" name="sort" value="asc">
             </form>
             <form action="administrator.php" method="post">
                 <td><input class="btn delete_btn" type="submit" value="削除"></td>
                 <input type = "hidden" name = "id" value = "!id!">
                 <input type = "hidden" name = "mode" value = "delete">
+                <input type="hidden" name="sort" value="asc">
             </form>
         </tr>
 tmp;
@@ -154,11 +163,13 @@ format;
                 <td><input class="btn edit_btn" type="submit" value="編集"></td>
                 <input type = "hidden" name = "id" value = "!id!">
                 <input type = "hidden" name = "mode" value = "edit">
+                <input type="hidden" name="sort" value="asc">
             </form>
             <form action="administrator.php" method="post">
                 <td><input class="btn delete_btn" type="submit" value="削除"></td>
                 <input type = "hidden" name = "id" value = "!id!">
                 <input type = "hidden" name = "mode" value = "delete">
+                <input type="hidden" name="sort" value="asc">
             </form>
         </tr>
     tmp;
@@ -166,7 +177,7 @@ format;
         $result = tmpl($stmt, $tmp);
         
         if($result === ""){
-            echo "<section><h3>検索結果</h3><p class = 'search_result_txt'>検索がヒットしませんでした</p></section>";   
+            echo "<section><h3>検索結果</h3><p class = 'search_result_txt'>検索がヒットしませんでした。</p></section>";   
         }else{
             echo "<section>" . $search_format . $result . "</table></div></section>";
         }
@@ -214,6 +225,7 @@ sql;
                     <p><a class="btn return_btn" onclick="history.back()">戻る</a></p>
                     <p><input class="btn submit_btn" type="submit"></p>
                     <input type = "hidden" name = "id" value = "!id!">
+                    <input type="hidden" name="sort" value="asc">
                     <input type = "hidden" name = "mode" value = "update">
                 </div>
             </form>
@@ -282,6 +294,7 @@ sql;
 
 // テンプレート置き換え関数
 function tmpl($stmt, $tmp){
+    global $sort;
 
     $block = "";
 
@@ -304,8 +317,13 @@ function tmpl($stmt, $tmp){
         $insert = str_replace("!所属部署!",$row["department"] ,$insert);
         $insert = str_replace("!備考特記事項!",$row["comment"] ,$insert);
         $insert = str_replace("!id!",$row["id"] ,$insert);
+
+        if($sort === "asc"){
+            $block .= $insert;
+        }else{
+            $block = $insert . $block;
+        }
         
-        $block .= $insert;
     }
     return $block;
 }
@@ -325,15 +343,17 @@ function tmpl($stmt, $tmp){
 </head>
 
 <body>
-<header><div class="logo">Sin shine</div></header>
+<header>
+    <div class="logo">Sin shine</div>
+    <!-- <p class = "logout_icon"><a href="login.html"><span class = "logout_arrow">&#8594;</span>ログアウト</a></p> -->
+</header>
 
 <main>
-
     <h2>管理者画面</h2>
 
     <section>
         <form action="administrator.php" method="post">
-            <p class="search_banner"><input type="text" class="search_banner_txt" name="search" placeholder = "キーワードを入力して検索" required><input type="submit" class="search_btn" value="&#10004;"><input type="hidden" name="mode" value="search"></p>
+            <p class="search_banner"><input type="text" class="search_banner_txt" name="search" placeholder = "キーワードを入力して検索" required><input type="submit" class="search_btn" value="&#10004;"><input type="hidden" name="mode" value="search"><input type="hidden" name="sort" value="asc"></p>
         </form>
     </section>
 
@@ -349,6 +369,11 @@ function tmpl($stmt, $tmp){
     <section>
 
         <h3>社員一覧</h3>
+
+        <div class="sort">
+            <form action="administrator.php" method="post"><input type="submit" class="btn sort_btn <?php if($sort === "desc"){echo "sort_btn_noselect";}?>" value="登録順"><input type="hidden" name="sort" value="asc"></form>
+            <form action="administrator.php" method="post"><input type="submit" class="btn sort_btn <?php if($sort === "asc"){echo "sort_btn_noselect";}?>" value="最新順"><input type="hidden" name="sort" value="desc"></form>
+        </div>
 
         <div class="table_box">
             <table>
@@ -370,12 +395,13 @@ function tmpl($stmt, $tmp){
                     <th>編集</th>
                     <th>削除</th>
                 </tr>
-    
+
                     <?php display(); ?>
             </table>
         </div>
-
     </section>
+
+
 </main>
 
 <footer><small>&copy;2024&nbsp;Mori&nbsp;Haruki&nbsp;All&nbsp;right&nbsp;reserved</small></footer>

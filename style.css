@@ -28,7 +28,7 @@ h3{
     text-align: center;
     font-size: 1.8rem;
     display: block;
-    margin:60px auto 30px;
+    margin:60px auto 20px;
     border-bottom: solid 3px var(--aceC);
     width: 40%;
 }
@@ -252,6 +252,25 @@ dd{
     margin-bottom: 2rem;
 }
 
+/* ソートボタン */
+.sort{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: right;
+}
+.sort form{
+    width: 125px;
+}
+.sort_btn{
+    margin: 1rem 0;
+    padding: 5px 30px;
+}
+.sort_btn_noselect{
+    background-color: #467094;
+    border: #467094 solid 2px;
+}
+
 /* 一覧表のデザイン */
 .table_box{
     overflow: scroll;
@@ -333,5 +352,4 @@ td{
     dd{
         width: 70%;
     }
-
 }
