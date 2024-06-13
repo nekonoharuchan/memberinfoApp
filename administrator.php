@@ -4,6 +4,8 @@ $dsn = "mysql:host=localhost; dbname=memberapp; charset=utf8";
 $user = "testuser";
 $pass = "testpass";
 
+ini_set('display_errors', 0);
+
 //データ受け取り
 $origin =[];
 
@@ -323,7 +325,7 @@ function tmpl($stmt, $tmp){
         }else{
             $block = $insert . $block;
         }
-        
+
     }
     return $block;
 }
@@ -345,7 +347,7 @@ function tmpl($stmt, $tmp){
 <body>
 <header>
     <div class="logo">Sin shine</div>
-    <!-- <p class = "logout_icon"><a href="login.html"><span class = "logout_arrow">&#8594;</span>ログアウト</a></p> -->
+    <p class = "logout_btn"><a href="login.html"><span class = "logout_arrow"></span>ログアウト</a></p>
 </header>
 
 <main>
@@ -401,7 +403,7 @@ function tmpl($stmt, $tmp){
         </div>
     </section>
 
-
+    <a class="pagetop" href="#"><div class="pagetop_arrow"></div></a>
 </main>
 
 <footer><small>&copy;2024&nbsp;Mori&nbsp;Haruki&nbsp;All&nbsp;right&nbsp;reserved</small></footer>

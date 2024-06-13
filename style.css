@@ -77,6 +77,7 @@ button{
 /* ------------------------header */
 header{
     margin:0 auto 40px;
+    padding-top: 20px;
 }
 
 .logo{
@@ -87,8 +88,6 @@ header{
     text-shadow: 0 0 5px var(--aceC);
     -webkit-text-stroke: #fff 1px;
 }
-
-/* ------------------------メインセクション設定 */
 
 /* ------------------------フッター */
 footer{
@@ -119,7 +118,6 @@ footer{
 }
 
 /* ------------------------エラー画面 */
-
 
 /* ------------------------ユーザー登録フォーム */
 .input_form{
@@ -214,9 +212,36 @@ dd{
 }
 /* ------------------------完了画面 */
 
-/* ※現時点で特になし */
-
 /* ------------------------管理者画面 */
+/* ログアウトボタン */
+.logout_btn{
+    font-size: .9rem;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    font-weight: bold;
+    color: var(--aceC);
+    transition: all .3s;
+}
+.logout_btn:hover{
+    color: var(--mainC);
+}
+.logout_arrow{
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    padding-left: 6px; 
+    margin-right: .4rem;
+    width: .9rem;
+    height: 1.2rem;
+    transition: all .3s;
+    background-color: var(--aceC);
+    clip-path: polygon(0 33%, 50% 33%, 50% 15%, 100% 50%, 50% 85%, 50% 67%, 0 67%);
+}
+.logout_btn:hover .logout_arrow{
+    background-color: var(--mainC);
+}
+
 /* 検索バー */
 .search_banner{
     border-radius: 20px;
@@ -326,8 +351,46 @@ td{
     border: 2px solid rgb(182, 28, 28);
 }
 
+/* トップへ戻るボタン */
+.pagetop{
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    background: #fff;
+    border: solid 2px var(--aceC);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    transition: all .3s;
+}
+.pagetop_arrow{
+    height: 10px;
+    width: 10px;
+    border-top: 3px solid var(--aceC);
+    border-right: 3px solid var(--aceC);
+    transform: translateY(20%) rotate(-45deg);
+    transition: all .3s;
+}
+.pagetop:hover{
+    border: solid 2px var(--mainC);
+}
+.pagetop:hover .pagetop_arrow{
+    border-top: 3px solid var(--mainC);
+    border-right: 3px solid var(--mainC);
+}
 
-/* 960px以上に適用されるCSS（PC用） */
+/* タブレットサイズ */
+@media screen and (min-width: 760px) and (max-width: 960px){
+    .logout_btn{
+        right: 5vw;
+        font-size: 1rem;
+    }
+}
+/* PCサイズ */
 @media screen and (min-width: 960px) {
     .logo{
         width: 1000px;
@@ -335,14 +398,13 @@ td{
         text-align: left;
     }
     section{
-        width: 1000px;
+        width: 90%;
+        max-width: 1000px;
         margin: 0 auto;
     }
-    
     .radio{
         margin-right: 5%;
     }
-
     .check_list{
         padding: 10px 60px;
     }
@@ -351,5 +413,16 @@ td{
     }
     dd{
         width: 70%;
+    }
+    .logout_btn{
+        top: 30px;
+        right: 15vw;
+        font-size: 1.1rem;
+    }
+    .logout_arrow{
+        height: 1.3rem;
+    }
+    table{
+        max-width: 70vw;
     }
 }
