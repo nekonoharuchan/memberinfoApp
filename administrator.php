@@ -108,7 +108,7 @@ function search(){
         joincom like ? or
         department like ? or
         comment like ?);
-    sql;
+sql;
     
     $stmt = $dbh -> prepare($sql);
     $input["search"] = "%".$input["search"]."%";
@@ -174,7 +174,7 @@ format;
                 <input type="hidden" name="sort" value="asc">
             </form>
         </tr>
-    tmp;
+tmp;
 
         $result = tmpl($stmt, $tmp);
         
@@ -210,7 +210,7 @@ sql;
                 <p class="input_txt"><span class="input_txt_ttl">役職</span><input class="intext" type="text" name="position" value = "!役職!"></p>
                 <p class="input_txt"><span class="input_txt_ttl">住所</span><input class="intext" type="text" name="address" required value = "!住所!"></p>
                 <p class="input_txt"><span class="input_txt_ttl">電話番号</span><input class="intext" type="tel" name="tel" placeholder="0000000000" required value = "!電話番号!"></p>
-                <p class="input_txt"><span class="input_txt_ttl">生年月日</span><input class="intext" type="date" name="birthday" required><p>
+                <p class="input_txt"><span class="input_txt_ttl">生年月日</span><input class="intext" type="date" name="birthday" required value = "!生年月日!"><p>
                 <p class="input_txt"><span class="input_txt_ttl">性別</span>
                     <span class="radios">
                         <label class="radio"><input type="radio" name="gender" value="男性" required>男性</label>
@@ -218,7 +218,7 @@ sql;
                         <label class="radio"><input type="radio" name="gender" value="その他">その他</label>
                     </span>
                 </p>
-                <p class="input_txt"><span class="input_txt_ttl">入社日</span><input class="intext" type="date" name="joincom" required></p>
+                <p class="input_txt"><span class="input_txt_ttl">入社日</span><input class="intext" type="date" name="joincom" required value = "!入社日!"></p>
                 <p class="input_txt"><span class="input_txt_ttl">所属（部署）</span><input class="intext" type="text" name="department" required value = "!所属部署!"></p>
                 <p class="comment_ttl">備考・特記事項</p>
                 <textarea name="comment">!備考特記事項!</textarea>
@@ -234,7 +234,7 @@ sql;
         </section>
 tmp;
 
-    echo  tmpl($stmt, $tmp);
+    echo tmpl($stmt, $tmp);
 }
 
 //更新機能(上記編集画面の情報を、DBに登録)
@@ -398,7 +398,7 @@ function tmpl($stmt, $tmp){
                     <th>削除</th>
                 </tr>
 
-                    <?php display(); ?>
+                <?php display(); ?>
             </table>
         </div>
     </section>
